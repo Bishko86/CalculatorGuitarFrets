@@ -1,26 +1,13 @@
 "use strict"
-
+//shows warning if data incorect
 function invalidData(selector) {
     let warning = document.querySelector(selector);
     let message = '<i class="fa fa-exclamation-triangle fa-lg"></i>' + 'invalid data'
     warning.innerHTML = message;
 }
 
-function calcGuitarFrets(beaker, amount, constanta, measureUnit) {
-    const calc = addTable(beaker, amount, measureUnit);
-    let fromZero = 0;
-    let beetwenFret = 0;
-    for (let i = 0; i < amount; i++) {
-        let number = `<span id="number"> ${i + 1} </span>`;
-        beetwenFret = beaker / constanta;
-        beaker = beaker - beetwenFret;
-        fromZero += beetwenFret;
-        let dataFret = `<span class="data"> ${fromZero.toFixed(4)} ${unit}</span>`;
-        let spaceBeetFret = `<span> ${beetwenFret.toFixed(4)} ${unit}</span>`;
-        calc(number, dataFret, spaceBeetFret);
-    }
-}
 
+// creates title of table and returns function that creates row table
 function addTable(scale, num, measure) {
     const table = document.createElement('table');
     const th = document.createElement('tr');
@@ -45,7 +32,22 @@ function addTable(scale, num, measure) {
         table.append(tr);
     }
 }
-
+//calculator 
+function calcGuitarFrets(beaker, amount, constanta, measureUnit) {
+    const calc = addTable(beaker, amount, measureUnit);
+    let fromZero = 0;
+    let beetwenFret = 0;
+    for (let i = 0; i < amount; i++) {
+        let number = `<span id="number"> ${i + 1} </span>`;
+        beetwenFret = beaker / constanta;
+        beaker = beaker - beetwenFret;
+        fromZero += beetwenFret;
+        let dataFret = `<span class="data"> ${fromZero.toFixed(2)} ${unit}</span>`;
+        let spaceBeetFret = `<span> ${beetwenFret.toFixed(2)} ${unit}</span>`;
+        calc(number, dataFret, spaceBeetFret);
+    }
+}
+//table ready
 function customEvent() {
     setTimeout(function () {
         table.dispatchEvent(new CustomEvent('ready-table', {
@@ -56,7 +58,7 @@ function customEvent() {
         }));
     });
 }
-
+// set styles for download PDF file
 function styleTabPdf(display, position, color, pdn_data) {
     document.querySelector('.back').style.display = display;
     document.querySelector('.share').style.display = display;
