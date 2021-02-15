@@ -1,6 +1,18 @@
 "use strict"
+
+export let unit = '';// cm, in
+
+//choose unit measure - mm , inch, none
+
+export function chooseUnit(event) {
+    let target = event.target;
+    if (target.id == 'none') unit = '';
+    if (target.id == 'mm') unit = 'mm';
+    if (target.id == 'in') unit = 'in';
+}
+
 //shows warning if data incorect
-function invalidData(selector) {
+export function invalidData(selector) {
     let warning = document.querySelector(selector);
     let message = '<i class="fa fa-exclamation-triangle fa-lg"></i>' + 'invalid data'
     warning.innerHTML = message;
@@ -14,13 +26,13 @@ function addTable(scale, num, measure) {
     th.innerHTML = '<th> Fret #</th> <th>nut offset</th> <th>prev.fret</th>';
     table.append(th);
     table.setAttribute('id', 'table');
-    table.classList.add('html2pdf__page-break');
+    // table.classList.add('html2pdf__page-break');
     const titleInfo = document.querySelector('.calc-info');
-    titleInfo.innerHTML = `<pre>
+    titleInfo.innerHTML = `<pre id="titl-info">
 	Scale : ${scale} ${measure};
 	#fret : ${num}
 	</pre>`;
-    document.querySelector('.calculation').append(table);
+    document.querySelector('#footer_block').before(table);
 
     return function (...data) {
         const tr = document.createElement('tr');
@@ -33,7 +45,7 @@ function addTable(scale, num, measure) {
     }
 }
 //calculator 
-function calcGuitarFrets(beaker, amount, constanta, measureUnit) {
+export function calcGuitarFrets(beaker, amount, constanta, measureUnit) {
     const calc = addTable(beaker, amount, measureUnit);
     let fromZero = 0;
     let beetwenFret = 0;
@@ -42,13 +54,22 @@ function calcGuitarFrets(beaker, amount, constanta, measureUnit) {
         beetwenFret = beaker / constanta;
         beaker = beaker - beetwenFret;
         fromZero += beetwenFret;
-        let dataFret = `<span class="data"> ${fromZero.toFixed(2)} ${unit}</span>`;
-        let spaceBeetFret = `<span> ${beetwenFret.toFixed(2)} ${unit}</span>`;
+        let dataFret = `<span class="data"> ${roundNumber(fromZero)} ${unit}</span>`;
+        let spaceBeetFret = `<span> ${roundNumber(beetwenFret)} ${unit}</span>`;
         calc(number, dataFret, spaceBeetFret);
     }
+    customEvent();
+}
+// cuts amount decimal digits after point
+function roundNumber(number) {
+    let string = number.toString()
+    let index = string.indexOf(".")
+    let item = string.slice(0, index + 3);
+    return item;
 }
 //table ready
 function customEvent() {
+    let table = document.querySelector('#table');
     setTimeout(function () {
         table.dispatchEvent(new CustomEvent('ready-table', {
             bubbles: true,
@@ -59,7 +80,8 @@ function customEvent() {
     });
 }
 // set styles for download PDF file
-function styleTabPdf(display, position, color, pdn_data) {
+export function styleTabPdf(display, position, color, pdn_data, fontSize) {
+    document.querySelector('#titl-info').style.fontSize = fontSize
     document.querySelector('.back').style.display = display;
     document.querySelector('.share').style.display = display;
     let header = document.querySelector('.calcs-title');
@@ -68,3 +90,4 @@ function styleTabPdf(display, position, color, pdn_data) {
 		padding: ${pdn_data}
 		`;
 }
+
