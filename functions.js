@@ -1,10 +1,9 @@
 "use strict"
-
-export let unit = '';// cm, in
+let unit = '';// cm, in
 
 //choose unit measure - mm , inch, none
 
-export function chooseUnit(event) {
+function chooseUnit(event) {
     let target = event.target;
     if (target.id == 'none') unit = '';
     if (target.id == 'mm') unit = 'mm';
@@ -12,7 +11,7 @@ export function chooseUnit(event) {
 }
 
 //shows warning if data incorect
-export function invalidData(selector) {
+function invalidData(selector) {
     let warning = document.querySelector(selector);
     let message = '<i class="fa fa-exclamation-triangle fa-lg"></i>' + 'invalid data'
     warning.innerHTML = message;
@@ -44,7 +43,7 @@ function addTable(scale, num, measure) {
     }
 }
 //calculator 
-export function calcGuitarFrets(beaker, amount, constanta, measureUnit) {
+function calcGuitarFrets(beaker, amount, constanta, measureUnit) {
     const calc = addTable(beaker, amount, measureUnit);
     let fromZero = 0;
     let beetwenFret = 0;
@@ -79,7 +78,7 @@ function customEvent() {
     });
 }
 // set styles for download PDF file
-export function styleTabPdf(display, position, color, pdn_data, fontSize) {
+function styleTabPdf(display, position, color, pdn_data, fontSize) {
     document.querySelector('#titl-info').style.fontSize = fontSize
     document.querySelector('.back').style.display = display;
     document.querySelector('.share').style.display = display;
