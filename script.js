@@ -1,5 +1,5 @@
 "use strict"
-import { unit, chooseUnit, invalidData, calcGuitarFrets, styleTabPdf } from './functions.js'
+// import { unit, chooseUnit, invalidData, calcGuitarFrets, styleTabPdf } from './functions.js'
 
 //coeficient for calculate frets
 const coeficient = 17.817;
