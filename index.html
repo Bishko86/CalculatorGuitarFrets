@@ -5,9 +5,9 @@
 	<title> Calculate Frets </title>
 	<link rel="stylesheet" href="style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+	<script src="https://kit.fontawesome.com/15e683e70c.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -16,34 +16,44 @@
 	<div class="container">
 
 		<div class="parent">
-			<header class="title">
-				<h1 align="center"> Calculate guitar Frets </h1>
-			</header>
-			<hr width="450" color="black">
-			<div class="content">
-				<h2 class="sub-title">Enter scale length and number of frets</h2>
+			<div class="wrap">
+				<header class="title">
+					<h1 align="center"><i class="fas fa-guitar"></i> Calculate guitar Frets </h1>
+				</header>
+				<hr width="450" color="black">
+				<div class="content">
+					<h2 class="sub-title">Enter scale length and number of frets</h2>
 
-				<form name="values" id="form">
-					<label for="length"> Scale length: </label>
-					<div id="ipt-block"><input type="text" min="0" name="beaker" id="length"><span
-							id="invalidCase"></span>
+					<form name="values" id="form">
+						<label for="length"> Scale length: </label>
+						<div id="ipt-block">
+							<input type="text" min="0" name="beaker" id="length">
+							<span id="invalidCase"></span>
+						</div>
+
+						<label for="fret"> Number frets:</label>
+						<div id="ipt-block"><input type="text" min="0" name="fret" id="fret"><span
+								id="invalCase"></span>
+						</div>
+					</form>
+					<p class="u-title">Unit:</p>
+					<form name="unit" id="radio-block">
+						<label for="mm"> mm </label>
+						<input type="radio" name="unit" id="mm">
+						<label for="in">in</label>
+						<input type="radio" name="unit" id="in">
+						<label for="none"> none </label>
+						<input type="radio" name="unit" id="none" checked>
+					</form>
+
+					<button align="center" id="calc"> Calc </button>
+				</div>
+				<footer>
+					<div class="foot-info">
+						<h4 class="author">Made by Roman Bishko</h4>
+						<p class="year">2020</p>
 					</div>
-
-					<label for="fret"> Number frets:</label>
-					<div id="ipt-block"><input type="text" min="0" name="fret" id="fret"><span id="invalCase"></span>
-					</div>
-				</form>
-				<p class="u-title">Unit:</p>
-				<form name="unit" id="radio-block">
-					<label for="mm"> mm </label>
-					<input type="radio" name="unit" id="mm">
-					<label for="in">in</label>
-					<input type="radio" name="unit" id="in">
-					<label for="none"> none </label>
-					<input type="radio" name="unit" id="none" checked>
-				</form>
-
-				<button align="center" id="calc"> Calc </button>
+				</footer>
 			</div>
 			<div class="calculation">
 				<div class="calcs-title">
@@ -56,20 +66,20 @@
 						<i class="fa fa-download fa-lg" aria-hidden="true"></i>
 					</span>
 				</div>
+				<footer id="footer_block">
+					<div class="foot-info">
+						<h4 class="author">Made by Roman Bishko</h4>
+						<p class="year">2020</p>
+					</div>
+				</footer>
 			</div>
 
 		</div>
-		<footer>
-			<div class="foot-info">
-				<h4>Made by Roman Bishko</h4>
-				<p class="year">2020</p>
-			</div>
-		</footer>
+
 
 	</div>
-	<script src="eventFunc.js"></script>
-	<script src="functions.js"></script>
-	<script src="script.js"></script>
+	<script type="module" src="functions.js"></script>
+	<script type="module" src="script.js"></script>
 </body>
 
 

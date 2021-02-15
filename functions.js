@@ -26,7 +26,6 @@ function addTable(scale, num, measure) {
     th.innerHTML = '<th> Fret #</th> <th>nut offset</th> <th>prev.fret</th>';
     table.append(th);
     table.setAttribute('id', 'table');
-    // table.classList.add('html2pdf__page-break');
     const titleInfo = document.querySelector('.calc-info');
     titleInfo.innerHTML = `<pre id="titl-info">
 	Scale : ${scale} ${measure};

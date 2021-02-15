@@ -1,6 +1,5 @@
 "use strict"
-
-let unit = '';// cm, in
+import { unit, chooseUnit, invalidData, calcGuitarFrets, styleTabPdf } from './functions.js'
 
 //coeficient for calculate frets
 const coeficient = 17.817;
@@ -51,18 +50,23 @@ const calc = document.querySelector('#calc');
 calc.addEventListener('click', calculate);
 
 function calculate() {
-    if (!length || !amountFrets || isNaN(length) && isNaN(amountFrets)) return;
+    calc.disabled = true;
+    if (!length || length === '0' || !amountFrets || isNaN(length) && isNaN(amountFrets)) return;
     calcGuitarFrets(length, amountFrets, coeficient, unit);
     let infoBlock = document.querySelector('.calculation');
-    let height = infoBlock.offsetHeight;
-    let parentBlock = document.querySelector('.parent');
-    parentBlock.style.height = height + 'px';
+    let content = document.querySelector('.wrap');
+
+    setTimeout(() => {
+        content.style.display = 'none';
+        calc.disabled = false;
+    }, 500);
+
     infoBlock.classList.add('animate');
-    customEvent();
 }
 
 //select rows of table
-document.body.addEventListener('ready-table', selectLines);
+let tableBodyEvent = document.body;
+tableBodyEvent.addEventListener('ready-table', selectLines);
 
 function selectLines(event) {
     let tabLines = Array.from(event.detail.children);
@@ -77,7 +81,7 @@ function selectLines(event) {
         }
         if (target.tagName == 'TR') {
             target.classList.add('selected');
-            target.firstChild.style.color = '#1f1f1f';
+            target.firstChild.style.color = '1f1f#1f';
         }
         if (target.tagName == 'TD') {
             parent.classList.add('selected');
@@ -93,10 +97,15 @@ function selectLines(event) {
 document.querySelector('.fa-long-arrow-left').addEventListener('click', back);
 
 function back() {
+    let content = document.querySelector('.wrap');
+    setTimeout(() => { content.style.display = 'block' });
     let animate = document.querySelector('.calculation');
     animate.classList.remove('animate');
-    document.querySelector('#table').remove();
-    document.querySelector('.parent').style.height = '';
+    setTimeout(() => {
+        document.querySelector('#table').remove();
+        // document.querySelector('.parent').style.height = '';
+        tableBodyEvent.removeEventListener('ready-table', selectLines);
+    }, 1000);
 }
 
 //download PDF file with calculates
@@ -104,7 +113,7 @@ let download = document.querySelector('.share');
 download.addEventListener('click', generatePDF);
 
 async function generatePDF() {
-    styleTabPdf('none', 'center', '#fff', '0 0 0 0');
+    styleTabPdf('none', 'center', '#fff', '0 0 0 0', '16px');
     const element = document.querySelector('.calculation');
     var opt = {
         margin: 5,
@@ -112,15 +121,9 @@ async function generatePDF() {
     }
     await html2pdf().set(opt)
         .from(element).save();
-    styleTabPdf('block', 'space-between', 'rgb(111, 109, 121)', '15px 0 15px 0');
+    styleTabPdf('block', 'space-between', 'rgb(204, 203, 211);', '15px 0 15px 0', '20px');
+
 }
 //choose unit measure - mm , inch, none
 let measureUnit = document.forms.unit;
 measureUnit.addEventListener('change', chooseUnit);
-
-function chooseUnit(event) {
-    let target = event.target;
-    if (target.id == 'none') unit = '';
-    if (target.id == 'mm') unit = 'mm';
-    if (target.id == 'in') unit = 'in';
-}
