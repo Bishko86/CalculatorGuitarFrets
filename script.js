@@ -51,7 +51,18 @@ calc.addEventListener('click', calculate);
 
 function calculate() {
     calc.disabled = true;
-    if (!length || length === '0' || !amountFrets || isNaN(length) && isNaN(amountFrets)) return;
+    if (!length || !amountFrets || isNaN(length) && isNaN(amountFrets)) return;
+    if (length * 1 === 0 || amountFrets * 1 === 0) {
+        if (length * 1 === 0) {
+
+            invalidData('#invalidCase');
+        }
+        if (amountFrets * 1 === 0) {
+
+            invalidData('#invalCase');
+        }
+        return
+    }
     calcGuitarFrets(length, amountFrets, coeficient, unit);
     let infoBlock = document.querySelector('.calculation');
     let content = document.querySelector('.wrap');
