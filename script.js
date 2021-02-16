@@ -114,8 +114,6 @@ function back() {
     animate.classList.remove('animate');
     setTimeout(() => {
         document.querySelector('#table').remove();
-        // document.querySelector('.parent').style.height = '';
-        tableBodyEvent.removeEventListener('ready-table', selectLines);
     }, 1000);
 }
 
