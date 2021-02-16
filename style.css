@@ -18,7 +18,7 @@ header.title{
     width: 100%;
     height: 120px;
 }
-h1{
+h1#header{
     display: block;
     margin: 0;
     color: #1f1f1f;
@@ -64,9 +64,35 @@ div.content {
     
 }
 
-form#form {
+
+
+
+
+div#ipt-block {
+    width: 100%;
+    height: 40px;
+}
+i.fas {
+    position: absolute;
+top: 30px;
+left: 10%;
+}
+/* style input type radio */
+form#radio-block {
     display : flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: relative;
+    width: 22%;
+    border-bottom: 1px solid black;
+    margin: 2% 39% 5% 39%;
+}
+input#mm,
+input#in,
+input#none {
+    width: auto;
+    position: relative;
+    top: 0;
 }
 
 p.u-title,
@@ -79,37 +105,16 @@ label {
     margin-top: 10px;
 }
 
-div#ipt-block {
-    width: 100%;
-    height: 40px;
-}
-i.fas {
-    float:left;
-    margin-right: 20px;
-}
-
-form#radio-block {
-    display : flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    position: relative;
-    width: 22%;
-    border-bottom: 1px solid black;
-    margin: 2% 39% 5% 39%;
-}
-
+/* hide background color in input element from autofill styles */
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    box-shadow: 0 0 0px 1000px white inset;
 }
+/* styles input elements */
 
-input#mm,
-input#in,
-input#none {
-    width: auto;
-    position: relative;
-    top: 0;
+form#form {
+    display : flex;
+    flex-direction: column;
 }
-
 input {
     position: relative;
     top:15px;
@@ -119,7 +124,24 @@ input {
     border-bottom: 1px solid black;
     background-color: #ffffff;
 }
+span#invalCase,
+span#invalidCase { 
+    position: absolute;
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 300;
+    font-size: 14px;
+ }
+/* hide arrows in input type="number" */
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+  }
+/* hide input's border */
 input:focus {
     outline:none;
     border-bottom: 2px solid  #1f1f1f;
@@ -133,19 +155,13 @@ button#calc {
     padding: 5px 5px;
 }
 
-span#invalCase,
-span#invalidCase { 
-    position: absolute;
-    font-family: 'Roboto', sans-serif; 
-    font-weight: 300;
-    font-size: 14px;
- }
+
 
 .fa-exclamation-triangle {
     font-size: 12px;
     color: red;
 }
-
+/* table styles */
 tr{
     display: flex;
     justify-content: space-between;
@@ -161,6 +177,15 @@ td {
     width: 100px;
     padding: 0 10px 0 0;
 }
+span#number {
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    padding: 7px;
+    margin: 3px;
+    border-radius: 50%;
+    background-color: silver;
+}
 
 th:first-child,
 td:first-child {
@@ -174,7 +199,7 @@ td:first-child {
     color: rgb(217, 217, 223);
 }
 
-table {
+table#table{
     margin: 10px auto auto auto;
     user-select: none;
 }
@@ -184,16 +209,16 @@ div.parent>div.calculation {
     top: 0;
     left: -120%;
     background-color: #ffffff;
-    width: 70%;
+    width: 100%;
     transition: .5s;
     z-index: 1000;
     float: none;
 }
 div.parent>div.calculation.animate {
     left: 0;
-    margin: 0 15% 0 15%;
+    margin: 0 auto 0 auto;
 }
-
+/* header of calculations */
 div.calcs-title {
     display : flex;
     flex-direction: row;
@@ -224,18 +249,10 @@ pre#titl-info{
     margin: 10px 0 0 0;
     font-size: 20px;
 }
-span#number {
-    text-align: center;
-    width: 16px;
-    height: 16px;
-    padding: 7px;
-    margin: 3px;
-    border-radius: 50%;
-    background-color: silver;
-}
 
 
 
+/* foter styles */
 div.foot-info {
     text-align: center;
 }
@@ -248,7 +265,7 @@ footer {
 p.year{
     margin-bottom: 0;
 }
-
+/* media requests */
 @media screen and (max-width: 970px) {
     hr {
         width: 100%;
@@ -260,7 +277,7 @@ p.year{
         border: none;
     }
     header.title {
-        height: 80px;
+        height: 90px;
     }
     pre#titl-info {
         font-family: 'Play', sans-serif;
@@ -270,8 +287,8 @@ p.year{
     span.share {
         right: 10px;
     }
-    h1 {
-        font-size: 32px;
+    h1#header {
+        font-size: 28px;
     }
     div.calcs-title{
         width: 100%;
@@ -279,5 +296,34 @@ p.year{
     div.parent>div.calculation.animate {
         margin: auto;
         width: 100%;
+    }
+
+    i.fas {
+    top: 30px;
+    left: 20%;
+    font-size: 40px;
+    }
+}
+@media screen and (max-width: 670px) {
+    i.fas {
+        top: 30px;
+        left: 10%;
+}
+h1#header {
+    width:50%;
+}
+}
+
+@media screen and (max-width: 480px) {
+
+    i.fas {
+        left: 8%;
+        font-size: 30px;
+
+    }
+
+    h1#header {
+        width:50%;
+        font-size: 24px;
     }
 }
