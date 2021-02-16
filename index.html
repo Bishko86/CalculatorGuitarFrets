@@ -18,7 +18,7 @@
 		<div class="parent">
 			<div class="wrap">
 				<header class="title">
-					<h1 align="center"><i class="fas fa-guitar"></i> Calculate guitar Frets </h1>
+					<h1 align="center" id="header"><i class="fas fa-guitar"></i> Calculate guitar Frets </h1>
 				</header>
 				<hr width="450" color="black">
 				<div class="content">
@@ -27,12 +27,12 @@
 					<form name="values" id="form">
 						<label for="length"> Scale length: </label>
 						<div id="ipt-block">
-							<input type="text" min="0" name="beaker" id="length">
+							<input type="number" min="0" name="beaker" id="length">
 							<span id="invalidCase"></span>
 						</div>
 
 						<label for="fret"> Number frets:</label>
-						<div id="ipt-block"><input type="text" min="0" name="fret" id="fret"><span
+						<div id="ipt-block"><input type="number" min="0" name="fret" id="fret"><span
 								id="invalCase"></span>
 						</div>
 					</form>
