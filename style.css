@@ -326,3 +326,59 @@ h1#header {
         font-size: 30px;
     }
 }
+
+/* style for confirm modal window */
+.mod_block {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000000;
+  }
+  .modal {
+    text-align: center;
+    width:300px ;
+    height: 150px;
+    border-radius: 8px;
+    transform: scale(0);
+    background-color: seashell;
+    animation-name: openModal;
+    animation-fill-mode: forwards;
+    animation-duration: .5s;
+  }
+  @keyframes openModal {
+    from{ 
+    transform: scale(0);
+    }
+    to{
+    transform: scale(1);
+    }
+  }
+  .close_modal {
+    transform: scale(1);
+    animation-name: closeModal;
+    animation-fill-mode: forwards;
+    animation-duration: .5s;
+  }
+  @keyframes closeModal {
+    from{ 
+    transform: scale(1);
+    }
+    to{
+    transform: scale(0);
+    }
+  }
+  .answer {
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    top: 10px;
+  }
+  .button {
+    width: 90px;
+    height: 35px;
+    font-size: 18px;
+  }
