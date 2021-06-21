@@ -119,20 +119,38 @@ function back() {
 
 //download PDF file with calculates
 let download = document.querySelector('.share');
-download.addEventListener('click', generatePDF);
+download.addEventListener('click', confirmDownloadPDF);
 
-async function generatePDF() {
-    styleTabPdf('none', 'center', '#fff', '0 0 0 0', '16px');
-    const element = document.querySelector('.calculation');
-    var opt = {
-        margin: 5,
-        filename: 'myfile.pdf',
-    }
-    await html2pdf().set(opt)
-        .from(element).save();
-    styleTabPdf('block', 'space-between', 'rgb(204, 203, 211);', '15px 0 15px 0', '20px');
-
+function confirmDownloadPDF() {
+    const confirmWindow = document.querySelector('.mod_block');
+    confirmWindow.style.display = 'flex';
 }
+
+const modal = document.querySelector('.mod_block');
+
+modal.addEventListener('click', handlerModalWindow)
+function handlerModalWindow(e) {
+    const modalBlock = document.querySelector('.mod_block');
+    const modal = document.querySelector('.modal');
+    const target = e.target;
+
+    if (target.tagName === 'BUTTON' && target.classList.contains('cancel')) {
+        modalBlock.style.display = 'none';
+    }
+    else if (target.tagName === 'DIV' && target.classList.contains('mod_block')) {
+        modalBlock.style.display = 'none';
+    }
+    else if (target.tagName === 'BUTTON' && target.classList.contains('ok')) {
+        generatePDF();
+        modal.classList.add('close_modal');
+        setTimeout(() => {
+            modalBlock.style.display = 'none';
+            modal.classList.remove('close_modal')
+        }, 1000);
+    }
+}
+
+
 //choose unit measure - mm , inch, none
 let measureUnit = document.forms.unit;
 measureUnit.addEventListener('change', chooseUnit);
