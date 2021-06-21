@@ -12,7 +12,15 @@
 </head>
 
 <body>
-
+	<div class="mod_block">
+		<div class="modal">
+			<h3>Download PDF file ?</h3>
+			<div class="answer">
+				<button class="button ok">Ok</button>
+				<button class="button cancel">Cancel</button>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 
 		<div class="parent">
@@ -27,13 +35,24 @@
 					<form name="values" id="form">
 						<label for="length"> Scale length: </label>
 						<div id="ipt-block">
-							<input type="number" min="0" name="beaker" id="length">
+							<input type="number" min="0" name="beaker" id="length" list="lengthList">
 							<span id="invalidCase"></span>
+							<datalist id="lengthList">
+								<option value="650"></option>
+								<option value="648"></option>
+								<option value="630"></option>
+							</datalist>
 						</div>
 
 						<label for="fret"> Number frets:</label>
-						<div id="ipt-block"><input type="number" min="0" name="fret" id="fret"><span
-								id="invalCase"></span>
+						<div id="ipt-block">
+							<input type="number" min="0" name="fret" id="fret" list="numberFrets">
+							<span id="invalCase"></span>
+							<datalist id="numberFrets">
+								<option value="24"></option>
+								<option value="22"></option>
+								<option value="18"></option>
+							</datalist>
 						</div>
 					</form>
 					<p class="u-title">Unit:</p>
@@ -62,7 +81,6 @@
 					</span>
 					<div class="calc-info"></div>
 					<span class="share">
-						<!-- <i class="fa fa-share-alt" aria-hidden="true"></i> -->
 						<i class="fa fa-download fa-lg" aria-hidden="true"></i>
 					</span>
 				</div>
