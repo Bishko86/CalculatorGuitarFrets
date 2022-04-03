@@ -88,4 +88,16 @@ function styleTabPdf(display, position, color, pdn_data, fontSize) {
 		padding: ${pdn_data}
 		`;
 }
+// downloads pdf file of calculations
+async function generatePDF() {
+    styleTabPdf('none', 'center', '#fff', '0 0 0 0', '16px');
+    const element = document.querySelector('.calculation');
+    var opt = {
+        margin: 5,
+        filename: 'myfile.pdf',
+    }
+    await html2pdf().set(opt)
+        .from(element).save();
+    styleTabPdf('block', 'space-between', 'rgb(204, 203, 211);', '15px 0 15px 0', '20px');
 
+}
