@@ -1,104 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Calculate Frets</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script
+      src="https://kit.fontawesome.com/15e683e70c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<head>
-	<title> Calculate Frets </title>
-	<link rel="stylesheet" href="style.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-	<script src="https://kit.fontawesome.com/15e683e70c.js" crossorigin="anonymous"></script>
+  <body>
+    <div class="mod_block">
+      <div class="modal">
+        <h3>Download PDF file ?</h3>
+        <div class="answer">
+          <button class="button ok">Ok</button>
+          <button class="button cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="parent">
+        <div class="wrap">
+          <header class="title">
+            <h1 align="center" id="header">
+              <i class="fas fa-guitar"></i> Calculate guitar Frets
+            </h1>
+          </header>
+          <hr width="450" color="black" />
+          <div class="content">
+            <h2 class="sub-title">Enter scale length and number of frets</h2>
 
-</head>
+            <form name="values" id="form">
+              <label for="length"> Scale length: </label>
+              <div id="ipt-block">
+                <input
+                  type="number"
+                  min="0"
+                  name="beaker"
+                  id="length"
+                  list="lengthList"
+                />
+                <span id="invalidCase"></span>
+                <datalist id="lengthList">
+                  <option value="650"></option>
+                  <option value="648"></option>
+                  <option value="630"></option>
+                </datalist>
+              </div>
 
-<body>
-	<div class="mod_block">
-		<div class="modal">
-			<h3>Download PDF file ?</h3>
-			<div class="answer">
-				<button class="button ok">Ok</button>
-				<button class="button cancel">Cancel</button>
-			</div>
-		</div>
-	</div>
-	<div class="container">
+              <label for="fret"> Number frets:</label>
+              <div id="ipt-block">
+                <input
+                  type="number"
+                  min="0"
+                  name="fret"
+                  id="fret"
+                  list="numberFrets"
+                />
+                <span id="invalCase"></span>
+                <datalist id="numberFrets">
+                  <option value="24"></option>
+                  <option value="22"></option>
+                  <option value="18"></option>
+                </datalist>
+              </div>
+            </form>
+            <p class="u-title">Unit:</p>
+            <form name="unit" id="radio-block">
+              <label for="mm"> mm </label>
+              <input type="radio" name="unit" id="mm" />
+              <label for="in">in</label>
+              <input type="radio" name="unit" id="in" />
+              <label for="none"> none </label>
+              <input type="radio" name="unit" id="none" checked />
+            </form>
 
-		<div class="parent">
-			<div class="wrap">
-				<header class="title">
-					<h1 align="center" id="header"><i class="fas fa-guitar"></i> Calculate guitar Frets </h1>
-				</header>
-				<hr width="450" color="black">
-				<div class="content">
-					<h2 class="sub-title">Enter scale length and number of frets</h2>
-
-					<form name="values" id="form">
-						<label for="length"> Scale length: </label>
-						<div id="ipt-block">
-							<input type="number" min="0" name="beaker" id="length" list="lengthList">
-							<span id="invalidCase"></span>
-							<datalist id="lengthList">
-								<option value="650"></option>
-								<option value="648"></option>
-								<option value="630"></option>
-							</datalist>
-						</div>
-
-						<label for="fret"> Number frets:</label>
-						<div id="ipt-block">
-							<input type="number" min="0" name="fret" id="fret" list="numberFrets">
-							<span id="invalCase"></span>
-							<datalist id="numberFrets">
-								<option value="24"></option>
-								<option value="22"></option>
-								<option value="18"></option>
-							</datalist>
-						</div>
-					</form>
-					<p class="u-title">Unit:</p>
-					<form name="unit" id="radio-block">
-						<label for="mm"> mm </label>
-						<input type="radio" name="unit" id="mm">
-						<label for="in">in</label>
-						<input type="radio" name="unit" id="in">
-						<label for="none"> none </label>
-						<input type="radio" name="unit" id="none" checked>
-					</form>
-
-					<button align="center" id="calc"> Calc </button>
-				</div>
-				<footer>
-					<div class="foot-info">
-						<h4 class="author">Made by Roman Bishko</h4>
-						<p class="year">2020</p>
-					</div>
-				</footer>
-			</div>
-			<div class="calculation">
-				<div class="calcs-title">
-					<span class="back">
-						<i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-					</span>
-					<div class="calc-info"></div>
-					<span class="share">
-						<i class="fa fa-download fa-lg" aria-hidden="true"></i>
-					</span>
-				</div>
-				<footer id="footer_block">
-					<div class="foot-info">
-						<h4 class="author">Made by Roman Bishko</h4>
-						<p class="year">2020</p>
-					</div>
-				</footer>
-			</div>
-
-		</div>
-
-
-	</div>
-	<script src="functions.js"></script>
-	<script src="script.js"></script>
-</body>
-
-
+            <button align="center" id="calc">Calc</button>
+          </div>
+          <footer>
+            <div class="foot-info">
+              <h4 class="author">Made by Roman Bishko</h4>
+              <p class="year">2020</p>
+            </div>
+          </footer>
+        </div>
+        <div class="calculation">
+          <div class="calcs-title">
+            <span class="back">
+              <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+            </span>
+            <div class="calc-info"></div>
+            <span class="share">
+              <i class="fa fa-download fa-lg" aria-hidden="true"></i>
+            </span>
+          </div>
+          <footer id="footer_block">
+            <div class="foot-info">
+              <h4 class="author">Made by Roman Bishko</h4>
+              <p class="year">2020</p>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="functions.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
